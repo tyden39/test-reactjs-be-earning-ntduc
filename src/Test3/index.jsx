@@ -3,7 +3,11 @@ import './index.scss'
 
 const Test3 = () => {
   return (
-    <div>Test3</div>
+    <div className='test3-wrapper'>
+      <div className='navigation'>
+        
+      </div>
+    </div>
   )
 }
 
