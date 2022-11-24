@@ -1,23 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import { getEnglishList } from './Test2';
+import Test3 from './Test3';
 
 function App() {
+  const {list6, list18, list24} = getEnglishList()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='App-body'>
+        <Test3 />
+      </div>
     </div>
   );
 }
