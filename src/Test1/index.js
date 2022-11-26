@@ -8,7 +8,7 @@ const getIndexValue = (numb, index) => {
   return parseInt(numbAsString[index])
 } 
 
-const getMaxArray = (arr) => {
+export const getMaxArray = (arr) => {
   const newArr = []
 
   for (let i = 0; i < arr.length; i++ ) {
