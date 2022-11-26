@@ -5,16 +5,15 @@ import leftArrow from '../assets/left-arrow.png'
 import downArrow from '../assets/down-arrow.png'
 import copyGreen from '../assets/copy-green.png'
 import loadingRed from '../assets/loading-red.png'
-import loadingWhite from '../assets/loading-white.png'
 import { useRandomList } from '../Test2'
 import Button from './components/Button'
 import List24 from './components/List24'
 import List6 from './components/List6'
 
 const Test3 = () => {
-  const {list6, list18, list24, refreshList6} = useRandomList()
+  const {list6, list24, refreshList6} = useRandomList()
 
-  const [isCreated, setIsCreated] = useState(true)
+  const [isCreated, setIsCreated] = useState(false)
 
   const [buttonLoading, setButtonLoading] = useState(false)
 
