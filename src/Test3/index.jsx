@@ -88,7 +88,9 @@ const Test3 = () => {
 
       {showCopiedPanel && <div className="copy-announcement">
         <div className="copy-announcement__panel">
-          <img className='copy-announcement__down-arrow' src={downArrow} alt="down-arrow" onClick={handleCloseCopiedPanel} />
+          <div className='copy-announcement__down-arrow' onClick={handleCloseCopiedPanel}>
+            <img src={downArrow} alt="down-arrow" />
+          </div>
           <img className='copy-announcement__image' src={copyGreen} alt="copy-green" />
           <p className='copy-announcement__content'>Saved to clipboard</p>
           <div className="copy-announcement__coundown">
