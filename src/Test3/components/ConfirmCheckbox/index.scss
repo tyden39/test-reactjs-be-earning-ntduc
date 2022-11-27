@@ -1,0 +1,32 @@
+.confirm-checkbox {
+  display: flex;
+
+  &__icon {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    margin-right: 20px;
+    cursor: pointer;
+
+    &--checked {
+
+    }
+
+    &--unchecked {
+      border-radius: 50%;
+      border: 1px solid #BBCFFB;
+    }
+  }
+
+  &__content {
+    font-family: 'Clear Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+
+    text-align: justify;
+
+    color: #667386;
+  }
+}

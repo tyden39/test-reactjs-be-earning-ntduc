@@ -5,11 +5,13 @@ import leftArrow from '../assets/left-arrow.png'
 import downArrow from '../assets/down-arrow.png'
 import copyGreen from '../assets/copy-green.png'
 import loadingRed from '../assets/loading-red.png'
+import check from '../assets/check.png'
 import { useRandomList } from '../Test2'
-import Button from './components/Button'
+import ActionPanel from './components/ActionPanel'
 import List24 from './components/List24'
 import List6 from './components/List6'
 import ConfirmCheckbox from './components/ConfirmCheckbox'
+import Button from './components/Button'
 
 const Test3 = () => {
   const {list6, list24, refreshList6} = useRandomList()
@@ -58,6 +60,10 @@ const Test3 = () => {
     setIsNext(false)
   }
 
+  const handleChecked = (index, value) => {
+    
+  }
+
   return (
     <div className='test3-wrapper'>
       <div className='title'>
@@ -82,8 +88,8 @@ const Test3 = () => {
       }
 
       {isNext
-        ? <Button onClick={handleSubmit} loading={buttonLoading}>SUBMIT</Button>
-        : <Button onClick={handleNext} loading={buttonLoading}>NEXT</Button>
+        ? <ActionPanel onClick={handleSubmit} loading={buttonLoading}>SUBMIT</ActionPanel>
+        : <ActionPanel onClick={handleNext} loading={buttonLoading}>NEXT</ActionPanel>
       }
 
       {showCopiedPanel && <div className="copy-announcement">
@@ -105,15 +111,16 @@ const Test3 = () => {
           <div className='copy-announcement__down-arrow' onClick={handleCloseConfirmPanel}>
             <img src={downArrow} alt="down-arrow" />
           </div>
-          <img className='copy-announcement__image' src={copyGreen} alt="copy-green" />
+          <img className='copy-announcement__image copy-announcement__image--created' src={check} alt="copy-green" />
           <p className='copy-announcement__content'>Your wallet has been created!</p>
-          <ConfirmCheckbox content='' />
-          <ConfirmCheckbox content='' />
-          <ConfirmCheckbox content='' />
-          {/* <div className={`action-block__button ${buttonLoading ? ' action-block__button--loading' : ''}`}>
-            {buttonLoading 
-              ? <img src={loadingWhite} alt='loading-white' /> : 'NEXT' }
-          </div> */}
+          <div className="copy-announcement__checkbox">
+            <ConfirmCheckbox onChecked={(checked) => handleChecked(1, checked)} content='Metanode cannot recover your seed phrase. You should back up your seed phrase and keep it safe, it’s your responsibility.' />
+            <ConfirmCheckbox onChecked={(checked) => handleChecked(2, checked)} content='Your transaction data is one of the most important security keys which is needed for every incurred transaction. You should back up your data automatically and secure back up file with a strong pasword.' />
+            <ConfirmCheckbox onChecked={(checked) => handleChecked(3, checked)} content='To keep your backup file safe, you should also keep secret your back up location and secure it.' />
+          </div>
+          <div className="copy-announcement__action">
+            <Button onClick={handleSubmit} loading={buttonLoading}>I UNDERSTAND</Button>
+          </div>
         </div>
       </div>}
     </div>

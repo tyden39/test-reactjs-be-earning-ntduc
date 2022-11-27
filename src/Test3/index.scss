@@ -332,16 +332,33 @@
 
   &__image {
     margin-top: 44px;
+
+    &--created {
+      margin-top: 54px;
+    }
   }
 
   &__content {
-    margin-top: 24px;
+    margin: 24px 0;
 
     font-family: 'Clear Sans Medium';
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
     line-height: 30px;
+  }
+
+  &__checkbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 0 16px;
+  }
+
+  &__action {
+    margin-top: 24px;
   }
 
   &__coundown {
