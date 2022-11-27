@@ -276,6 +276,11 @@
     &--loading {
       background: #BBCFFB;
     }
+
+    &--disabled {
+      cursor: default;
+      background: #BBCFFB;
+    }
   }
 
   

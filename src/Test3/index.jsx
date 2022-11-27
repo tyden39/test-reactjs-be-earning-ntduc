@@ -14,7 +14,7 @@ import ConfirmCheckbox from './components/ConfirmCheckbox'
 import Button from './components/Button'
 
 const Test3 = () => {
-  const {list6, list24, refreshList6} = useRandomList()
+  const { list6, list24, refreshList6 } = useRandomList()
 
   const [isCreated, setIsCreated] = useState(false)
 
@@ -24,6 +24,12 @@ const Test3 = () => {
   const timeoutRef = useRef()
 
   const [isNext, setIsNext] = useState(false)
+
+  const [confirm1, setConfirm1] = useState(false)
+  const [confirm2, setConfirm2] = useState(false)
+  const [confirm3, setConfirm3] = useState(false)
+
+  const isAllChecked = ![confirm1, confirm2, confirm3].includes(false)
 
   const handleCopy = () => {
     setShowCopiedPanel(true)
@@ -53,7 +59,7 @@ const Test3 = () => {
     timeoutRef.current = setTimeout(() => {
       setIsCreated(true)
       setButtonLoading(false)
-  }, 500);
+    }, 500);
   }
 
   const handleBack = () => {
@@ -61,7 +67,19 @@ const Test3 = () => {
   }
 
   const handleChecked = (index, value) => {
-    
+    switch (index) {
+      case 1:
+        setConfirm1(value)
+        break
+      case 2:
+        setConfirm2(value)
+        break
+      case 3:
+        setConfirm3(value)
+        break
+      default:
+        break
+    }
   }
 
   return (
@@ -75,7 +93,7 @@ const Test3 = () => {
         <p className='guide'>{!isNext ? 'Auto Gen Seed Phrase?' : 'Confirm Your Seed Phrase'}</p>
       </div>
 
-      {isNext 
+      {isNext
         ? <List6 data={list6} />
         : <>
           <List24 data={list24} />
@@ -104,7 +122,7 @@ const Test3 = () => {
             <span>2s</span>
           </div>
         </div>
-      </div> }
+      </div>}
 
       {isCreated && <div className="copy-announcement">
         <div className="copy-announcement__panel copy-announcement__panel--created">
@@ -119,7 +137,7 @@ const Test3 = () => {
             <ConfirmCheckbox onChecked={(checked) => handleChecked(3, checked)} content='To keep your backup file safe, you should also keep secret your back up location and secure it.' />
           </div>
           <div className="copy-announcement__action">
-            <Button onClick={handleSubmit} loading={buttonLoading}>I UNDERSTAND</Button>
+            <Button onClick={handleSubmit} loading={buttonLoading} disabled={!isAllChecked}>I UNDERSTAND</Button>
           </div>
         </div>
       </div>}
