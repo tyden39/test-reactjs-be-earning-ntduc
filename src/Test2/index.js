@@ -58,12 +58,13 @@ const createList6 = (inputList18, inputList24) => {
 
 export const useRandomList = () => {
   const [list24] = useState(getRamdomItem(24, eng))
-  const [list18] = useState([])
+  const [list18, setList18] = useState([])
   const [list6, setList6] = useState([])
 
   const refreshList6 = () => {
     const newList18 = getRamdomItem(18, list24)
     const newList6 = createList6(newList18, list24)
+    setList18(newList18)
     setList6(newList6)
   }
   

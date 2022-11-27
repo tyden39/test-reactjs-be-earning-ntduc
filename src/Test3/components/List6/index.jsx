@@ -6,7 +6,7 @@ const List6 = ({data}) => {
       {data.map((item, index) => 
         <div key={`list6-${index}`} className="word-list2__item2">
           <div className='word-list2__item2__index'><span>{item?.primary}</span></div>
-          {item?.list?.map((word, index) => <span style={!index ? {marginLeft: '24px'} : {}} className='word-list2__item2__word'>{word}</span>)}
+          {item?.list?.map((word, index) => <span key={`list6-item-${index}`} style={!index ? {marginLeft: '24px'} : {}} className='word-list2__item2__word'>{word}</span>)}
         </div>
       )}
     </div>

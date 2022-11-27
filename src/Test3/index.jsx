@@ -9,6 +9,7 @@ import { useRandomList } from '../Test2'
 import Button from './components/Button'
 import List24 from './components/List24'
 import List6 from './components/List6'
+import ConfirmCheckbox from './components/ConfirmCheckbox'
 
 const Test3 = () => {
   const {list6, list24, refreshList6} = useRandomList()
@@ -65,7 +66,7 @@ const Test3 = () => {
       </div>
 
       <div className="title2">
-        <p className='guide'>Auto Gen Seed Phrase?</p>
+        <p className='guide'>{!isNext ? 'Auto Gen Seed Phrase?' : 'Confirm Your Seed Phrase'}</p>
       </div>
 
       {isNext 
@@ -99,9 +100,14 @@ const Test3 = () => {
 
       {isCreated && <div className="copy-announcement">
         <div className="copy-announcement__panel copy-announcement__panel--created">
-          <img className='copy-announcement__down-arrow' src={downArrow} alt="down-arrow" onClick={handleCloseConfirmPanel} />
+          <div className='copy-announcement__down-arrow' onClick={handleCloseConfirmPanel}>
+            <img src={downArrow} alt="down-arrow" />
+          </div>
           <img className='copy-announcement__image' src={copyGreen} alt="copy-green" />
           <p className='copy-announcement__content'>Your wallet has been created!</p>
+          <ConfirmCheckbox content='' />
+          <ConfirmCheckbox content='' />
+          <ConfirmCheckbox content='' />
           {/* <div className={`action-block__button ${buttonLoading ? ' action-block__button--loading' : ''}`}>
             {buttonLoading 
               ? <img src={loadingWhite} alt='loading-white' /> : 'NEXT' }
