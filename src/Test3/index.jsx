@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useRef, useState } from 'react'
+import React, { createContext, useEffect, useReducer, useRef, useState } from 'react'
 import './index.scss'
 import copy from '../assets/copy.png'
 import leftArrow from '../assets/left-arrow.png'
@@ -6,7 +6,8 @@ import downArrow from '../assets/down-arrow.png'
 import copyGreen from '../assets/copy-green.png'
 import loadingRed from '../assets/loading-red.png'
 import check from '../assets/check.png'
-import { useRandomList } from '../Test2'
+import errorImg from '../assets/error.png'
+import { getEnglishList } from '../Test2'
 import ActionPanel from './components/ActionPanel'
 import List24 from './components/List24'
 import List6 from './components/List6'
@@ -24,7 +25,21 @@ const Test3 = () => {
   const [state, dispatch] = useReducer(Test3Reducer, initState)
   const {selectedList} = state
 
-  const { list6, list24, refreshList6 } = useRandomList()
+  const [list6, setList6] = useState([])
+  const [list24, setList24] = useState([])
+console.log(selectedList)
+  useEffect(() => {
+    const { list6, list24, list18 } = getEnglishList()
+    
+    console.log('=========== TEST 2 ===========')
+    console.log('list6:', list6)
+    console.log('list18:', list18)
+    console.log('list24:', list24)
+
+    setList6(list6)
+    setList24(list24)
+  }, [])
+  
 
   const [isCreated, setIsCreated] = useState(false)
 
@@ -40,6 +55,8 @@ const Test3 = () => {
   const [confirm3, setConfirm3] = useState(false)
 
   const isAllChecked = ![confirm1, confirm2, confirm3].includes(false)
+
+  const [error, setError] = useState(false)
 
   const handleCopy = () => {
     setShowCopiedPanel(true)
@@ -60,16 +77,20 @@ const Test3 = () => {
   }
 
   const handleNext = () => {
-    refreshList6()
     setIsNext(true)
   }
 
   const handleSubmit = () => {
-    setButtonLoading(true)
 
     // checkResult
-    const result = selectedList.includes(item => list24.findIndex(item.word) !== item.primary);
+    const error = selectedList.map(item => list24.findIndex(x => x === item.word) !== item.primary).includes(true);
+    console.log(error)
+    if (error) {
+      setError(true)
+      return
+    } else setError(false)
 
+    setButtonLoading(true)
     timeoutRef.current = setTimeout(() => {
       setIsCreated(true)
       setButtonLoading(false)
@@ -125,8 +146,13 @@ const Test3 = () => {
           </>
         )}
 
+        {error && <p className='error'>
+          <img src={errorImg} alt="error" />
+          Wrong seed phrases. Please try again!
+        </p>}
+
         {isNext ? (
-          <ActionPanel onClick={handleSubmit} loading={buttonLoading} disabled={selectedList.length < 6} >
+          <ActionPanel onClick={handleSubmit} loading={buttonLoading}>
             SUBMIT
           </ActionPanel>
         ) : (

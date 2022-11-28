@@ -1,5 +1,4 @@
 /* eslint-disable no-loop-func */
-import { useState } from 'react'
 import eng from './eng'
 
 const getRamdomItem = (count, inputList) => {
@@ -56,22 +55,15 @@ const createList6 = (inputList18, inputList24) => {
   return list6
 }
 
-export const useRandomList = () => {
-  const [list24] = useState(getRamdomItem(24, eng))
-  const [list18, setList18] = useState([])
-  const [list6, setList6] = useState([])
+export const getEnglishList = () => {
+  const list24 = getRamdomItem(24, eng)
+  const list18 = getRamdomItem(18, list24)
+  const list6 = createList6(list18, list24)
 
-  const refreshList6 = () => {
-    const newList18 = getRamdomItem(18, list24)
-    const newList6 = createList6(newList18, list24)
-    setList18(newList18)
-    setList6(newList6)
-  }
-  
+  // console.log(list6)
   return {
     list6,
     list18,
-    list24,
-    refreshList6
+    list24
   }
 }

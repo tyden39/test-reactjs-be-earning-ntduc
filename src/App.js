@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import './App.scss';
 import { getMaxArray } from './Test1';
-import { useRandomList } from './Test2';
 import Test3 from './Test3';
 
 const arr1 = [0,10,1,99,9,8,79,91,22,32,12]
@@ -15,14 +14,8 @@ function App() {
   console.log(getMaxArray(arr2));
   console.log(getMaxArray(arr3));
 
-  console.log('=========== TEST 2 ===========')
-  const {list6, list18, list24, refreshList6} = useRandomList()
-  console.log('list6:', list6)
-  console.log('list18:', list18)
-  console.log('list24:', list24)
-
   useEffect(() => {
-    refreshList6()
+    // refreshList6()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
